@@ -9,9 +9,69 @@
   "jsnbversion": "v0.1",
   "cells": [
     {
-      "code": "",
+      "code": "// const and let\nconst awesome = \"javascript\"\n// awesome = \"java\" // throws error, value cannot be re-assigned\n// const awesome = \"java\" // throws error, cannot be re-initialized\n\nlet trending = \"React JS\"\ntrending = \"Next JS\" // allowed, value can be re-assigned\n// let trending = \"java\" // throws error, cannot be re-initialized",
+      "status": "[1]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "Next JS <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Default Function Parameters\nfunction awesome(name = \"javascript\") {\n  scrib.show(`Trending language is ${name}!`);\n}\nawesome(); // Trending language is javascript!\n",
+      "status": "[3]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "Trending language is javascript! <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Template literal strings\n// Without template literal\nconst framework = \"React JS\"\nscrib.show(\"Javascript has \" + framework + \" as framework/library\");\n\n// With template literal\nscrib.show(`Javascript has ${framework} as framework/library`);\n",
+      "status": "[5]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "Javascript has React JS as framework/library <br>Javascript has React JS as framework/library <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Object destructuring\nconst language = {\n  name: \"Javascript\",\n  usedIn: \"Web development\",\n  framework: \"React JS, Next JS, Vue JS\"\n}\n\nconst { name, usedIn, framework } = language // destructure the properties you want to use\nscrib.show(`${name} is used in ${usedIn} and it has multiple frameworks like ${framework}`)",
+      "status": "[8]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "Javascript is used in Web development and it has multiple frameworks like React JS, Next JS, Vue JS <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Array destructuring\nconst frameworks = [\"React JS\", \"Next JS\", \"Vue JS\"]\n\nconst [reactjs, nextjs, vuejs] = frameworks\nscrib.show(reactjs, nextjs, vuejs)",
+      "status": "[9]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "React JS Next JS Vue JS <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Optional Chaining\nconst languages = { javascript: { ext: \".js\" } };\nscrib.show(languages?.javascript?.ext); // \".js\"\nscrib.show(languages?.javascript?.library); // undefined",
+      "status": "[10]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": ".js <br>undefined <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Nullish coelsing\nconst language = null;\nconst library = language ?? \"javacript\";\nconsole.log(library); // \"javacript\"",
       "status": "",
       "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Short-Circuit Evaluation\nconst language = true;\nconst message = language && `Javascript is used is web development? - ${language}`;\nscrib.show(message)",
+      "status": "[18]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "Javascript is used is web development? - true <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Ternary operator\nconst library = \"ReactJS\"\nconst isJsLibrary = library === \"ReactJS\" ? `${library} is a JS library` : `${library} is not a JS library`\nscrib.show(isJsLibrary)",
+      "status": "[20]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "ReactJS is a JS library <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Spread operator with objects\nconst language1 = {\n  name: \"javascript\",\n  ext: \".js\"\n}\n\nconst languages1Extended = {\n  ...language1,\n  libraries: \"axios, react js\"\n}\n\n\n// Spread operator with arrays\nconst languageSet1 = [\"java\", \"python\", \"rust\"]\nconst languageSet2 = [\"javascript\", \"go\", \"c++\"]\nconst languages = [...languageSet1, ...languageSet2]\n\nscrib.show(languages1Extended)\nscrib.show(languages)\n",
+      "status": "[22]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "{\n  \"name\": \"javascript\",\n  \"ext\": \".js\",\n  \"libraries\": \"axios, react js\"\n} <br>[\n  \"java\",\n  \"python\",\n  \"rust\",\n  \"javascript\",\n  \"go\",\n  \"c++\"\n] <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Transformations using array map method\nconst languages = [ \"java\", \"python\", \"rust\", \"javascript\", \"go\", \"c++\" ]\nconst upperCase = languages.map(language => language.toUpperCase())\nconst capitalize = languages.map(language => language.split(\"\")[0].toUpperCase() + language.split(\"\").slice(1).join(\"\"))\nscrib.show(upperCase)\nscrib.show(capitalize)",
+      "status": "[30]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "[\n  \"JAVA\",\n  \"PYTHON\",\n  \"RUST\",\n  \"JAVASCRIPT\",\n  \"GO\",\n  \"C++\"\n] <br>[\n  \"Java\",\n  \"Python\",\n  \"Rust\",\n  \"Javascript\",\n  \"Go\",\n  \"C++\"\n] <br>",
       "type": "code"
     }
   ],
