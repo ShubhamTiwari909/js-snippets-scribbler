@@ -73,6 +73,90 @@
       "status": "[30]<br><span style=\"font-size:8px\">0ms<span></span></span>",
       "output": "[\n  \"JAVA\",\n  \"PYTHON\",\n  \"RUST\",\n  \"JAVASCRIPT\",\n  \"GO\",\n  \"C++\"\n] <br>[\n  \"Java\",\n  \"Python\",\n  \"Rust\",\n  \"Javascript\",\n  \"Go\",\n  \"C++\"\n] <br>",
       "type": "code"
+    },
+    {
+      "code": "// Removing item using filter\nconst languages = [ \"java\", \"python\", \"rust\", \"javascript\", \"go\", \"c++\" ]\nconst webDevLanguages = languages.filter(language => language !== \"rust\" && language !== \"go\" && language !== \"c++\")\nscrib.show(webDevLanguages) // [ \"java\", \"python\", \"javascript\" ]",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Aggregation using reduce method\nconst finances = [908000, 209010,400000]\nconst total = finances.reduce((acc, val) => acc + val, 0); // 1517010\nscrib.show(total)",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Debouning\nfunction debounce(callback, delay) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => callback(...args), delay);\n  };\n}",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Throttling\nfunction throttle(callback, delay) {\n  let shouldWait = false;\n  return (...args) => {\n    if (!shouldWait) {\n      callback(...args);\n      shouldWait = true;\n      setTimeout(() => (shouldWait = false), delay);\n    }\n  };\n}",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Deep cloning\nconst language = { name: \"javascript\", ext: { js: \".js\", jsx: \".jsx\" } };\nconst copyLanguage = structuredClone(language);\nscrib.show(copyLanguage)",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Try catch blocks\ntry {\n  // risky code here that could have errors\n  throw Error(\"This is a custom error\")\n} catch (error) {\n  scrib.show(\"Something went wrong:\", error.message); // Something went wrong: This is a custom error\n} finally {\n  scrib.show(\"It will run no matter a error is thrown or not\")\n}",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// Async await with fetch\nasync function getData() {\n  try {\n    const res = await fetch(\"https://jsonplaceholder.typicode.com/todos/1\");\n    const data = await res.json();\n    scrib.show(data); // { \"userId\": 1, \"id\": 1, \"title\": \"delectus aut autem\", \"completed\": false }\n  } catch (err) {\n    scrib.show(\"Error:\", err);\n  } finally {\n\tscrib.show(\"Data fetched successfully\")\n  }\n}\ngetData()",
+      "status": "",
+      "output": "",
+      "type": "code"
+    },
+    {
+      "code": "// cache function calls\nfunction memoize(fn) {\n  const cache = {};\n  return function (n) {\n    if (n in cache) return cache[n];\n    return (cache[n] = fn(n));\n  };\n}\n\nfunction slowDouble(n) {\n  console.log(\"Calculating...\"); // some heavy calculation\n  return n * 2;\n}\n\n// Memoizing the slowDouble function\nconst memoizedDouble = memoize(slowDouble);\nscrib.show(memoizedDouble(2)) // will do the calculation\nscrib.show(memoizedDouble(2)) // won't do the calculation and returns the result from cache",
+      "status": "[1]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "4 <br>4 <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Guard clause to avoid deeply nested if\nconst language = {\n  name: \"javascript\",\n  ext: \".js\",\n  library: \"axio\"\n}\nfunction checkLanguage(language) {\n  if (!language) return \"No language found\";\n  if (!language.name) return \"Name required\";\n  if (!language.ext) return \"Extension required\";\n  if (!language.library) return \"A library name is required\";\n  return \"All good\"\n}\nscrib.show(checkLanguage(language)) // All good",
+      "status": "[3]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "All good <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Abort controller\nconst controller = new AbortController();\nconst signal = controller.signal;\n\nfetch(\"https://jsonplaceholder.typicode.com/todos/1\", { signal })\n  \t.catch(err => {\n\tif (err.name === \"AbortError\") scrib.show(\"Request aborted\");\n  });\ncontroller.abort(); // Request aborted",
+      "status": "[10]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "Request aborted <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Function composition\nconst compose = (...fns) => (val) => fns.reduceRight((acc, fn) => fn(acc), val);\n\n// Example usage\nconst financeBonusQuarted1 = x => x * 1.25;\nconst financeBonusQuarted2 = x => x * 2;\nconst result = compose(financeBonusQuarted1, financeBonusQuarted2)(500000);\nscrib.show(result) // 1250000",
+      "status": "[12]<br><span style=\"font-size:8px\">1ms<span></span></span>",
+      "output": "1250000 <br>",
+      "type": "code"
+    },
+    {
+      "code": "class EventEmitter {\n  constructor() {\n    this.events = {};\n  }\n\n  on(event, cb) {\n    (this.events[event] ||= []).push(cb);\n  }\n\n  emit(event, ...args) {\n    this.events[event]?.forEach(fn => fn(...args));\n  }\n}\n\nconst emitter = new EventEmitter();\n\nconst languages = [ \"java\", \"python\", \"rust\", \"javascript\", \"go\", \"c++\" ]\n\nemitter.on(\"findLanguages\", language => scrib.show(languages.filter(lang => lang === language)));\nemitter.emit(\"findLanguages\", \"java\");",
+      "status": "[14]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "[\n  \"java\"\n] <br>",
+      "type": "code"
+    },
+    {
+      "code": "const language = new Proxy({ name: \"Javascript\" }, {\n  get(target, prop) {\n    console.log(`Getting ${prop}`);\n    return target[prop];\n  },\n  set(target, prop, value) {\n     scrib.show(`Setting ${prop} to ${value}`);\t\n\t if(typeof value !== \"string\"){\n\t\t  scrib.show(\"Value type should be string\");\n\t\t  return false\n\t } else {\n\t\t  target[prop] = value;\n\t\t  return true\n\t }  \n  }\n});\nscrib.show(language.name) // Javascript\nlanguage.name = \"Python\"\nscrib.show(language.name) // Python\nlanguage.extension = \".py\"\nscrib.show(language.extension) // .py\n\nlanguage.library = 100;\nscrib.show(language.library) // undefined as the type is number and it didn't set the property on language",
+      "status": "[21]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "Javascript <br>Setting name to Python <br>Python <br>Setting extension to .py <br>.py <br>Setting library to 100 <br>Value type should be string <br>undefined <br>",
+      "type": "code"
+    },
+    {
+      "code": "// Tagged literals\nfunction strong(strings, ...values) {\n  return strings.reduce((result, str, i) => {\n    return result + str + (values[i] ? `<strong>${values[i]}</strong>` : '');\n  }, \"\");\n}\n\nconst language = \"JavaScript\";\nscrib.show(strong`${language} is trending`)",
+      "status": "[24]<br><span style=\"font-size:8px\">0ms<span></span></span>",
+      "output": "<strong>JavaScript</strong> is trending <br>",
+      "type": "code"
     }
   ],
   "source": "https://github.com/gopi-suvanam/scribbler",
